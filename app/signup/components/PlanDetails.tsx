@@ -28,8 +28,8 @@ const PlanDetails = ({ setPeriodChange, setPlanChange }: Props) => {
             <div className='mt-8'>
                 <label className='inline-flex items-center cursor-pointer'>
                     <span className='mr-8 text-2xl font-thin cursor-pointer'>Monthly</span>
-                    <div className='w-12 h-6 bg-gray-300 rounded-full transition duration-1000 ease-in-out'>
-                        <div className={`w-6 h-6 rounded-full transition duration-500 ease-in ${annual ? "bg-[#03fc56] ml-6" : "bg-white"}`}>
+                    <div className='w-12 h-6 bg-gray-300 rounded-full transition duration-200 ease-in'>
+                        <div className={`w-6 h-6 rounded-full transition duration-100 ease-in ${annual ? "bg-[#03fc56] ml-6" : "bg-white"}`}>
                         <input type='checkbox' className='hidden' checked={annual} onChange={handlePlanPeriodChange}/>
                         </div>
                     </div>

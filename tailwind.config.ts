@@ -8,8 +8,15 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      keyframes: {
+        wiggle: {
+          '0%, 100%': { transform: 'rotate(-1deg)' },
+          '50%': { transform: 'rotate(1deg)' },
+        }
+      }
     },
   },
   plugins: [],
 };
+
 export default config;
