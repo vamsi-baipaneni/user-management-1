@@ -5,7 +5,7 @@ export const metadata = {
   
   export default function UserManagement() {
     return (
-      <div className="mt-[20px]">
+      <div className="mt-[200px]">
         <p className="font-bold text-center text-3xl">User Management</p>
       </div>
     );
