@@ -12,3 +12,7 @@ export type form = {
     plantype: string,
     planperiod: string
 }
+
+export type users = form & {
+    created: Date;
+}
