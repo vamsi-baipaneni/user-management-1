@@ -70,7 +70,7 @@ const SignupForm = () => {
         if (!pwdRegex.test(formData.password)) {
             validationErrors.password = "Please enter a valid password"
         }
-        if(!formData.dob.trim()){
+        if (!formData.dob.trim()) {
             validationErrors.dob = "Date of Birth Required"
         }
         if (formData.password !== formData.confirmpassword) {

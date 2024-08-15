@@ -1,19 +1,31 @@
 "use client"
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { AiOutlineMenu, AiOutlineClose } from "react-icons/ai";
 import Link from "next/link";
 
 const Navbar = () => {
 
     const [menuIcon, setMenuIcon] = useState<boolean>(false);
+    const [scroll, setScroll] = useState<boolean>(false);
+
+    const changeBackground = ()=>{
+        if(window.scrollY>=80){
+            setScroll(true);
+        }
+        else{
+            setScroll(false);
+        }
+    }
+
+    window.addEventListener('scroll', changeBackground);
 
     const handleDisplayChange = () => {
         setMenuIcon(!menuIcon);
     }
 
     return (
-        <header className="bg-slate-800 text-[#03fc56] w-full ease-in duration-300 fixed top-0 left-0 z-10">
+        <header className={`${scroll?"bg-[#03fc56] text-slate-800":"bg-slate-800 text-[#03fc56]"} w-full ease-in duration-300 fixed top-0 left-0 z-10`}>
             <nav className="max-w-[1366px] mx-auto h-[100px] flex justify-between items-center p-4">
                 <div>
                     <Link href='/' onClick={handleDisplayChange}>
@@ -39,8 +51,8 @@ const Navbar = () => {
 
                 <div onClick={handleDisplayChange} className="flex md:hidden">
                     {menuIcon ? 
-                    (<AiOutlineClose size={25} className="text-[#03fc56] cursor-pointer" />) : 
-                    (<AiOutlineMenu size={25} className="text-[#03fc56] cursor-pointer" />)}
+                    (<AiOutlineClose size={25} className={`${scroll?"text-slate-800":"text-[#03fc56]"} cursor-pointer`} />) : 
+                    (<AiOutlineMenu size={25} className={`${scroll?"text-slate-800":"text-[#03fc56]"} cursor-pointer`} />)}
                 </div>
 
                 <div className={menuIcon ?
