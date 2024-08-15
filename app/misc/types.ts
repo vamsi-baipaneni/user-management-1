@@ -2,6 +2,7 @@ export type form = {
     first: string,
     last: string,
     middle: string,
+    dob: string,
     email: string,
     password: string,
     confirmpassword: string,
