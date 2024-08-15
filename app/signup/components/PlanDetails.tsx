@@ -39,7 +39,7 @@ const PlanDetails = ({ setPeriodChange, setPlanChange }: Props) => {
             <div className='mt-10 grid sm:grid-cols-2 lg:grid-cols-3 gap-10 md:w-11/12 mx-auto'>
                 {
                     plans.map((selectedPlan,idx)=>(
-                        <div key={idx} className={`border-2 py-10 md:px-6 px-4 rounded-lg shadow-3xl ${selectedPlan.name===plan ? "bg-[#03fc56] text-slate-800": "bg-slate-800"}`}>
+                        <div key={idx} className={`border-2 py-10 md:px-6 px-4 rounded-lg shadow-3xl ${selectedPlan.name===plan ? "bg-[#03fc56] text-slate-800 scale-105": "bg-slate-800"}`}>
                             <h3 className={`text-xl font-bold text-center text-[#03fc56] ${selectedPlan.name===plan ? " text-slate-800": "text-[#03fc56]"}`}>{selectedPlan.name}</h3>
                             <p className='mt-3 text-wrap'>{selectedPlan.description}</p>
                             <p className={`text-2xl font-bold tracking-wide text-center mt-3 text-[#03fc56] ${selectedPlan.name===plan ? "text-slate-800":"text-[#03fc56]"}`}>
