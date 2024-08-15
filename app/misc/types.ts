@@ -15,4 +15,5 @@ export type form = {
 
 export type users = form & {
     created: Date;
+    column: string;
 }
