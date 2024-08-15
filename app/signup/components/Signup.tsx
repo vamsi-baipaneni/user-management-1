@@ -54,6 +54,7 @@ const SignupForm = () => {
 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
+        setErrors({});
         const validationErrors = {};
         const pwdRegex = RegExp(/^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{6,16}$/);
         const emailRegex = RegExp(/^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i);
@@ -203,12 +204,12 @@ const SignupForm = () => {
         <form className="inline-flex flex-col gap-5 justify-center" onSubmit={handleSubmit}>
             <h2 className='text-4xl text-white tracking-wide font-semibold'>Create an Account <p className='text-xs font-light'>(Fields marked with * are required)</p></h2>
             <div className='flex flex-col md:flex-row gap-5'>
-                <label className={`flex-1 relative mt-4 ${errors.first ? "animate-[wiggle_0.1s_ease-in-out_2s]" : ""}`}>
+                <label className={`flex-1 relative mt-4 ${errors.first ? "animate-[wiggle_0.3s_ease-in-out_2s]" : ""}`}>
                     <input ref={firstRef} name='first' type="text" className='text-md w-full px-4 py-2 rounded-md border bg-slate-800 outline-none focus:border-[#03fc56] duration-200 peer' onChange={handleFieldChange} />
                     <span className={`absolute left-0 top-2 mx-2 px-1 text-md duration-200 peer-focus:text-[#03fc56] pointer-events-none peer-focus:-translate-y-6 bg-slate-800 ${formData.first ? "peer-valid:-translate-y-6" : ""}`}>First Name (*)</span>
                     {errors.first && <span className='text-red-500'>{errors.first}</span>}
                 </label>
-                <label className={`flex-1 relative mt-4 ${errors.last ? "animate-[wiggle_0.1s_ease-in-out_2s]" : ""}`}>
+                <label className={`flex-1 relative mt-4 ${errors.last ? "animate-[wiggle_0.3s_ease-in-out_2s]" : ""}`}>
                     <input ref={lastRef} name='last' type="text" className='text-md w-full px-4 py-2 rounded-md border bg-slate-800 outline-none focus:border-[#03fc56] duration-200 peer' onChange={handleFieldChange} />
                     <span className={`absolute left-0 top-2 mx-2 px-1 text-md duration-200 peer-focus:text-[#03fc56] pointer-events-none peer-focus:-translate-y-6 bg-slate-800 ${formData.last ? "peer-valid:-translate-y-6" : ""}`}>Last Name (*)</span>
                     {errors.last && <span className='text-red-500'>{errors.last}</span>}
@@ -219,37 +220,37 @@ const SignupForm = () => {
                 </label>
             </div>
             <div className='flex flex-col md:flex-row gap-5'>
-                <label className={`flex-1 relative mt-4 md:w-[60%] ${errors.email ? "animate-[wiggle_0.1s_ease-in-out_2s]" : ""}`}>
+                <label className={`flex-1 relative mt-4 md:w-[60%] ${errors.email ? "animate-[wiggle_0.3s_ease-in-out_2s]" : ""}`}>
                     <input ref={emailRef} name='email' type="email" className='text-md w-full px-4 py-2 rounded-md border bg-slate-800 outline-none focus:border-[#03fc56] duration-200 peer' onChange={handleFieldChange} />
                     <span className={`absolute left-0 top-2 mx-2 px-1 text-md duration-200 peer-focus:text-[#03fc56] pointer-events-none peer-focus:-translate-y-6 bg-slate-800 ${formData.email ? "peer-valid:-translate-y-6" : ""}`}>Email (*)</span>
                     {errors.email && <span className='text-red-500'>{errors.email}</span>}
                 </label>
-                <label className={`relative mt-4 md:w-[25%] ${errors.dob ? "animate-[wiggle_0.1s_ease-in-out_2s" : ""}`}>
+                <label className={`relative mt-4 md:w-[25%] ${errors.dob ? "animate-[wiggle_0.3s_ease-in-out_2s" : ""}`}>
                     <input ref={dobRef} type="date" max={todaysDate} name='dob' className='text-md w-full px-4 py-2 rounded-md border bg-slate-800 outline-none focus:border-[#03fc56] duration-200 peer' onChange={handleDateChange} />
                     <span className={`absolute left-0 top-2 mx-2 px-1 text-md duration-200 peer-focus:text-[#03fc56] pointer-events-none peer-focus:-translate-y-6 bg-slate-800 ${formData.dob ? "peer-valid:-translate-y-6" : ""}`}>Date of birth (*)</span>
                     {errors.dob && <span className='text-red-500'>{errors.dob}</span>}
                 </label>
             </div>
-            <label className={`flex-1 relative mt-4 ${errors.password ? "animate-[wiggle_0.1s_ease-in-out_2s]" : ""}`}>
+            <label className={`flex-1 relative mt-4 ${errors.password ? "animate-[wiggle_0.3s_ease-in-out_2s]" : ""}`}>
                 <input ref={passwordRef} name='password' type="password" className='text-md w-full px-4 py-2 rounded-md border bg-slate-800 outline-none focus:border-[#03fc56] duration-200 peer' onChange={handleFieldChange} />
                 <span className={`absolute left-0 top-2 mx-2 px-1 text-md duration-200 peer-focus:text-[#03fc56] pointer-events-none peer-focus:-translate-y-6 bg-slate-800 ${formData.password ? "peer-valid:-translate-y-6" : ""}`}>Password (*)</span>
                 {errors.password && <span className='text-red-500'>{errors.password}</span>}
             </label>
-            <label className={`flex-1 relative mt-4 ${errors.confirmpassword ? "animate-[wiggle_0.1s_ease-in-out_2s]" : ""}`}>
+            <label className={`flex-1 relative mt-4 ${errors.confirmpassword ? "animate-[wiggle_0.3s_ease-in-out_2s]" : ""}`}>
                 <input ref={confirmpasswordRef} name='confirmpassword' type="password" className='text-md w-full px-4 py-2 rounded-md border bg-slate-800 outline-none focus:border-[#03fc56] duration-200 peer' onChange={handleFieldChange} />
                 <span className={`absolute left-0 top-2 mx-2 px-1 text-md duration-200 peer-focus:text-[#03fc56] pointer-events-none peer-focus:-translate-y-6 bg-slate-800 ${formData.confirmpassword ? "peer-valid:-translate-y-6" : ""}`}>Confirm Password (*)</span>
                 {errors.confirmpassword && <span className='text-red-500'>{errors.confirmpassword}</span>}
             </label>
             <div className='flex flex-col md:flex-row justify-between gap-5'>
                 <div className='md:w-[50%] mt-4'>
-                    <label className={`flex-1 relative ${errors.street ? "animate-[wiggle_0.1s_ease-in-out_2s]" : ""}`}>
+                    <label className={`flex-1 relative ${errors.street ? "animate-[wiggle_0.3s_ease-in-out_2s]" : ""}`}>
                         <input ref={streetRef} name='street' type="text" className='text-md w-full px-4 py-2 rounded-md border bg-slate-800 outline-none focus:border-[#03fc56] duration-200 peer' onChange={handleFieldChange} />
                         <span className={`absolute left-0 -top-1 mx-2 px-1 text-md duration-200 peer-focus:text-[#03fc56] pointer-events-none peer-focus:-translate-y-6 bg-slate-800 ${formData.street ? "peer-valid:-translate-y-6" : ""}`}>Street (*)</span>
                         {errors.street && <span className='text-red-500'>{errors.street}</span>}
                     </label>
                 </div>
                 <div className='flex gap-4 mt-4'>
-                    <label className={`flex-1 relative ${errors.state ? "animate-[wiggle_0.1s_ease-in-out_2s]" : ""}`} >
+                    <label className={`flex-1 relative ${errors.state ? "animate-[wiggle_0.3s_ease-in-out_2s]" : ""}`} >
                         <select ref={stateRef} name="state" onChange={handleStateChange} value={formData.state} className='text-lg w-full px-4 py-2 rounded-md border bg-slate-800 outline-none focus:border-[#03fc56] duration-200 peer'>
                             <option value="" disabled></option>
                             {
@@ -261,7 +262,7 @@ const SignupForm = () => {
                         <span className={`absolute left-0 top-2 mx-2 px-1 text-md duration-200 peer-focus:text-[#03fc56] pointer-events-none peer-focus:-translate-y-6 bg-slate-800 ${formData.state ? "peer-valid:-translate-y-6" : ""}`}>State (*)</span>
                         {errors.state && <span className='text-red-500'>{errors.state}</span>}
                     </label>
-                    <label className={`flex-1 relative ${errors.city ? "animate-[wiggle_0.1s_ease-in-out_2s]" : ""}`}>
+                    <label className={`flex-1 relative ${errors.city ? "animate-[wiggle_0.3s_ease-in-out_2s]" : ""}`}>
                         <select ref={cityRef} name="city" onChange={handleFieldChange} value={formData.city} className='text-lg w-full px-4 py-2 rounded-md border bg-slate-800 outline-none focus:border-[#03fc56] duration-200 peer'>
                             <option value="" disabled></option>
                             {
@@ -273,7 +274,7 @@ const SignupForm = () => {
                         <span className={`absolute left-0 top-2 mx-2 px-1 text-md duration-200 peer-focus:text-[#03fc56] pointer-events-none peer-focus:-translate-y-6 bg-slate-800 ${formData.city ? "peer-valid:-translate-y-6" : ""}`}>City (*)</span>
                         {errors.city && <span className='text-red-500'>{errors.city}</span>}
                     </label>
-                    <label className={`flex-1 relative ${errors.zipcode ? "animate-[wiggle_0.1s_ease-in-out_2s]" : ""}`}>
+                    <label className={`flex-1 relative ${errors.zipcode ? "animate-[wiggle_0.3s_ease-in-out_2s]" : ""}`}>
                         <input ref={zipRef} name='zipcode' type="text" className='text-md w-full px-4 py-2 rounded-md border bg-slate-800 outline-none focus:border-[#03fc56] duration-200 peer' onChange={handleFieldChange} />
                         <span className={`absolute left-0 top-2 mx-2 px-1 text-md duration-200 peer-focus:text-[#03fc56] pointer-events-none peer-focus:-translate-y-6 bg-slate-800 ${formData.zipcode ? "peer-valid:-translate-y-6" : ""}`}>ZipCode (*)</span>
                         {errors.zipcode && <span className='text-red-500'>{errors.zipcode}</span>}
