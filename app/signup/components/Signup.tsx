@@ -62,7 +62,7 @@ const SignupForm = () => {
         setErrors(validationErrors);
         if (Object.keys(validationErrors).length === 0) {
             console.log(formData);
-            const data = { ...formData, created: new Date() };
+            const data = { ...formData, created: new Date(), column: "default" };
             const existingData = JSON.parse(window.localStorage.getItem("userData") || "[]");
             existingData.push(data);
             window.localStorage.setItem("userData", JSON.stringify(existingData));

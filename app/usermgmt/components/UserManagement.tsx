@@ -40,109 +40,95 @@ const UserManagementComponent = () => {
     }
 
     const handleOnDropKeepUsers = (e: React.DragEvent<HTMLDivElement>) => {
-        if (keepUsers?.length !== 0) {
-            setKeepUsers(
-                [...keepUsers?.filter((user) => { JSON.stringify(user) !== e.dataTransfer.getData("user") }),
-                JSON.parse(e.dataTransfer.getData("user"))]
-            )
-        }
-        else {
-            setKeepUsers([JSON.parse(e.dataTransfer.getData("user"))]);
-        }
+        console.log("keep drop")
+        const user = JSON.parse(e.dataTransfer.getData("user"));
 
-        deleteUsers?.forEach((user) => {
-            if (JSON.stringify(user) === e.dataTransfer.getData("user")) {
-                setDeleteUsers([
-                    ...deleteUsers.filter(
-                        (userContainer) =>
-                            JSON.stringify(userContainer) !== e.dataTransfer.getData("user")
-                    ),
-                ]);
-            }
+        // Update Keep Users
+        setKeepUsers((prevKeepUsers) => {
+            const updatedKeepUsers = [...prevKeepUsers.filter(u => u.email !== user.email), user];
+            window.localStorage.setItem('keepData', JSON.stringify(updatedKeepUsers));
+            return updatedKeepUsers;
         });
 
-        users?.forEach((user) => {
-            if (JSON.stringify(user) === e.dataTransfer.getData("user")) {
-                setUsers([
-                    ...users.filter(
-                        (userContainer) =>
-                            JSON.stringify(userContainer) !== e.dataTransfer.getData("user")
-                    ),
-                ]);
-            }
-        });
-        window.localStorage.removeItem('userData');
-        window.localStorage.removeItem('keepData');
-        window.localStorage.removeItem('deleteData');
-        window.localStorage.setItem('userData', JSON.stringify(users) || "[]");
-        window.localStorage.setItem('keepData', JSON.stringify(keepUsers) || "[]");
-        window.localStorage.setItem('deleteData', JSON.stringify(deleteUsers) || "[]");
-    }
+        // Remove from Delete Users
+        if(deleteUsers!==null && deleteUsers!==undefined){
+            setDeleteUsers((prevDeleteUsers) => {
+                const updatedDeleteUsers = prevDeleteUsers?.filter(u => u.email !== user.email);
+                window.localStorage.setItem('deleteData', JSON.stringify(updatedDeleteUsers));
+                return updatedDeleteUsers;
+            });
+        }
+
+        // Remove from Original Users
+        if(users!==null && users!==undefined){
+            setUsers((prevUsers) => {
+                const updatedUsers = prevUsers?.filter(u => u.email !== user.email);
+                window.localStorage.setItem('userData', JSON.stringify(updatedUsers));
+                return updatedUsers;
+            });
+        }
+    };
+
 
     const handleOnDropUsers = (e: React.DragEvent<HTMLDivElement>) => {
-        console.log("here1");
-        if (users?.length !== 0) {
-            setUsers(
-                [...users?.filter((user) => { JSON.stringify(user) !== e.dataTransfer.getData("user") }),
-                JSON.parse(e.dataTransfer.getData("user"))]
-            )
-            console.log("here2");
-        }
-        else {
-            setUsers([JSON.parse(e.dataTransfer.getData("user"))]);
-            console.log("here3");
-        }
+        console.log("users drop")
+        const user = JSON.parse(e.dataTransfer.getData("user"));
 
-        deleteUsers?.forEach((user) => {
-            if (JSON.stringify(user) === e.dataTransfer.getData("user")) {
-                setDeleteUsers([
-                    ...deleteUsers.filter(
-                        (userContainer) =>
-                            JSON.stringify(userContainer) !== e.dataTransfer.getData("user")
-                    ),
-                ]);
-            }
+        // Update Delete Users
+        setUsers((prevUsers) => {
+            const updatedUsers = [...prevUsers.filter(u => u.email !== user.email), user];
+            window.localStorage.setItem('userData', JSON.stringify(updatedUsers));
+            return updatedUsers;
         });
 
-        keepUsers?.forEach((user) => {
-            console.log("here4")
-            if (JSON.stringify(user) === e.dataTransfer.getData("user")) {
-                setKeepUsers([
-                    ...keepUsers.filter(
-                        (userContainer) =>
-                            JSON.stringify(userContainer) !== e.dataTransfer.getData("user")
-                    ),
-                ]);
-                console.log("here5")
-            }
-        });
-        window.localStorage.removeItem('userData');
-        window.localStorage.removeItem('keepData');
-        window.localStorage.removeItem('deleteData');
-        window.localStorage.setItem('userData', JSON.stringify(users) || "[]");
-        window.localStorage.setItem('keepData', JSON.stringify(keepUsers) || "[]");
-        window.localStorage.setItem('deleteData', JSON.stringify(deleteUsers) || "[]");
-    }
+        // Remove from Keep Users
+        if(keepUsers!==null && keepUsers!==undefined){
+            setKeepUsers((prevKeepUsers) => {
+                const updatedKeepUsers = prevKeepUsers?.filter(u => u.email !== user.email);
+                window.localStorage.setItem('keepData', JSON.stringify(updatedKeepUsers));
+                return updatedKeepUsers;
+            });
+        }
+
+        if(deleteUsers!==null && deleteUsers!==undefined){
+            setDeleteUsers((prevDeleteUsers) => {
+                const updatedDeleteUsers = prevDeleteUsers?.filter(u => u.email !== user.email);
+                window.localStorage.setItem('deleteData', JSON.stringify(updatedDeleteUsers));
+                return updatedDeleteUsers;
+            });
+        }
+    };
 
     const handleOnDropDeleteUsers = (e: React.DragEvent<HTMLDivElement>) => {
-        const transferUser = e.dataTransfer.getData("user");
-        const usersToDelete = deleteUsers;
-        usersToDelete?.filter((user) => {
-            JSON.stringify(user) !== transferUser;
-        })
-        usersToDelete?.push(JSON.parse(transferUser));
-        setDeleteUsers(usersToDelete);
+        console.log("delete drop")
+        const user = JSON.parse(e.dataTransfer.getData("user"));
 
-        setUsers((prevUsers) => prevUsers?.filter(user => JSON.stringify(user) !== e.dataTransfer.getData("user")));
-        setKeepUsers((prevUsers) => prevUsers?.filter(user => JSON.stringify(user) !== e.dataTransfer.getData("user")));
+        // Update Delete Users
+        setDeleteUsers((prevDeleteUsers) => {
+            const updatedDeleteUsers = [...prevDeleteUsers.filter(u => u.email !== user.email), user];
+            window.localStorage.setItem('deleteData', JSON.stringify(updatedDeleteUsers));
+            return updatedDeleteUsers;
+        });
 
-        window.localStorage.removeItem('userData');
-        window.localStorage.removeItem('keepData');
-        window.localStorage.removeItem('deleteData');
-        window.localStorage.setItem('userData', JSON.stringify(users) || "[]");
-        window.localStorage.setItem('keepData', JSON.stringify(keepUsers) || "[]");
-        window.localStorage.setItem('deleteData', JSON.stringify(deleteUsers) || "[]");
-    }
+        // Remove from Keep Users
+        if(keepUsers!==null && keepUsers!==undefined){
+            setKeepUsers((prevKeepUsers) => {
+                const updatedKeepUsers = prevKeepUsers?.filter(u => u.email !== user.email);
+                window.localStorage.setItem('keepData', JSON.stringify(updatedKeepUsers));
+                return updatedKeepUsers;
+            });
+        }
+
+        // Remove from Original Users
+        if(users!==null && users!==undefined){
+            setUsers((prevUsers) => {
+                const updatedUsers = prevUsers?.filter(u => u.email !== user.email);
+                window.localStorage.setItem('userData', JSON.stringify(updatedUsers));
+                return updatedUsers;
+            });
+        }
+    };
+
 
     return (
         <div className="flex items-center justify-between max-w-[100%]">
