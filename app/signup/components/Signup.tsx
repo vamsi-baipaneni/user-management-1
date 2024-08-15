@@ -283,7 +283,7 @@ const SignupForm = () => {
             </div>
             <PlanDetails setPeriodChange={handleToggle} setPlanChange={handlePlan} />
             <div className='flex justify-center w-full'>
-                <button className='mt-8 mb-8 text-3xl text-center bg-[#03fc56] px-4 py-2 rounded-md text-slate-800 border-white border-4 hover:bg-white hover:border-[#03fc56] hover:border-4'>Create Account</button>
+                <button className='transform motion-safe:hover:-translate-y-1 motion-safe:hover:scale-110 transition ease-in-out duration-300 mt-8 mb-8 text-3xl text-center bg-[#03fc56] px-4 py-2 rounded-md text-slate-800 border-white border-4 hover:bg-white hover:border-[#03fc56] hover:border-4'>Create Account</button>
             </div>
         </form>
     )
